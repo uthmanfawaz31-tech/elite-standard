@@ -1,66 +1,75 @@
-// Loader Logic for Landing Page
+// Modern Loader Logic for Elite Standard Portal Page
 document.addEventListener("DOMContentLoaded", () => {
   const progressBar = document.getElementById("progress");
   const percentageText = document.getElementById("percentage");
+  const statusText = document.getElementById("status-text");
 
   if (progressBar && percentageText) {
-    let progress = 50;
+    let progress = 0;
     const interval = setInterval(() => {
-      progress += Math.random() * 2; // Random increment for "realistic" feel
+      progress += Math.floor(Math.random() * 5) + 2;
+      
+      if (statusText) {
+        if (progress < 35) {
+          statusText.textContent = "Connecting to Elite Media Hub...";
+        } else if (progress < 75) {
+          statusText.textContent = "Verifying Downloader Links...";
+        } else if (progress < 100) {
+          statusText.textContent = "Loading App Portal...";
+        } else {
+          statusText.textContent = "Welcome to Elite Standard!";
+        }
+      }
+
       if (progress >= 100) {
         progress = 100;
         clearInterval(interval);
         setTimeout(() => {
           window.location.href = "dashboard.html";
-        }, 500);
+        }, 400);
       }
+      
       progressBar.style.width = `${progress}%`;
-      percentageText.textContent = `${Math.floor(progress)}%`;
-    }, 100);
+      percentageText.textContent = `${progress}%`;
+    }, 80);
   }
 
-  // 3D Dropdown Particles for Landing Page
+  // Particle Starfield Background Configuration
   if (document.body.classList.contains("login-page") && typeof tsParticles !== 'undefined') {
     tsParticles.load("tsparticles", {
       particles: {
-        number: { value: 100, density: { enable: true, value_area: 800 } },
-        color: { value: ["#f4b400", "#ffffff", "#ffcc33"] },
+        number: { value: 70, density: { enable: true, value_area: 800 } },
+        color: { value: ["#f4b400", "#ffffff", "#3b82f6"] },
         shape: { type: "circle" },
         opacity: {
-          value: 0.5,
+          value: 0.6,
           random: true,
-          anim: { enable: true, speed: 1, opacity_min: 0.1, sync: false }
+          anim: { enable: true, speed: 0.8, opacity_min: 0.2, sync: false }
         },
         size: {
-          value: { min: 1, max: 4 },
+          value: { min: 1, max: 3.5 },
           random: true,
         },
         move: {
           enable: true,
-          speed: 3,
-          direction: "bottom", // "Dropdown" effect
+          speed: 1.5,
+          direction: "none",
           random: true,
           straight: false,
           out_mode: "out",
           bounce: false,
-        },
-        rotate: {
-          value: 0,
-          random: true,
-          direction: "clockwise",
-          animation: { enable: true, speed: 5, sync: false }
         }
       },
       interactivity: {
         detect_on: "canvas",
         events: {
-          onhover: { enable: true, mode: "bubble" },
+          onhover: { enable: true, mode: "grab" },
           onclick: { enable: true, mode: "push" },
           resize: true
         },
         modes: {
-          bubble: { distance: 200, size: 6, duration: 0.3, opacity: 1, speed: 3 },
-          push: { particles_nb: 4 }
+          grab: { distance: 140, line_linked: { opacity: 0.3 } },
+          push: { particles_nb: 3 }
         }
       },
       retina_detect: true
@@ -68,65 +77,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Particles Configuration for Dashboard (optimized for 3D feel)
-if (document.getElementById('tsparticles') && !document.body.classList.contains("login-page")) {
-  tsParticles.load("tsparticles", {
-    particles: {
-      number: { value: 60, density: { enable: true, value_area: 800 } },
-      color: { value: "#f4b400" },
-      shape: { type: "circle" },
-      opacity: {
-        value: 0.4,
-        random: true,
-      },
-      size: {
-        value: { min: 1, max: 3 },
-        random: true,
-      },
-      links: {
-        enable: true,
-        distance: 150,
-        color: "#f4b400",
-        opacity: 0.3,
-        width: 1
-      },
-      move: {
-        enable: true,
-        speed: 1,
-        direction: "none",
-        random: true,
-        straight: false,
-        out_mode: "out",
-        bounce: false,
-      }
-    },
-    interactivity: {
-      detect_on: "window",
-      events: {
-        onhover: { enable: true, mode: "grab" },
-        resize: true
-      }
-    }
-  });
-}
-
-// Download function for app files
-function downloadApp(url) {
-  const link = document.createElement('a');
-  link.href = url;
-  link.download = 'PlayRob_1.0.apk';
-  link.target = '_blank';
-  document.body.appendChild(link);
-  link.click();
-  document.body.removeChild(link);
-}
-
-// Download via Downloader App function
-function downloadViaApp(url) {
-  window.open(url, '_blank');
-}
-
-// Logout function (redirects back to loader page)
+// Logout function (redirects back to portal entry page)
 function logout() {
   window.location.href = "index.html";
 }

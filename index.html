@@ -4,23 +4,59 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Elite Standard Login</title>
+  <title>Elite Standard | Premium App Portal</title>
   <link rel="stylesheet" href="style.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 
 <body class="login-page">
+  <!-- Particle Ambient Background -->
   <div id="tsparticles"></div>
-  <div class="loader-container">
-    <img src="assets/logo/elite standard.jpg" class="loader-logo" alt="Elite Standard Logo">
-    <div class="progress-bar-container">
-      <div id="progress" class="progress-bar"></div>
+
+  <!-- Modern Portal Entry Card -->
+  <main class="portal-card">
+    <div class="brand-badge-container">
+      <img src="assets/logo/elite standard.jpg" class="brand-logo" alt="Elite Standard Logo">
+      <span class="status-dot" title="Server Status: Operational"></span>
     </div>
-    <div id="percentage" class="percentage">50%</div>
-    <p class="loader-text">Initializing Elite Standard Experience...</p>
-  </div>
+
+    <h1 class="portal-title">ELITE STANDARD</h1>
+    <p class="portal-subtitle">Premium Media & App Download Portal</p>
+
+    <!-- System Status Badge -->
+    <div class="system-status">
+      <span class="pulse-indicator"></span>
+      <span id="status-text">Connecting to Elite Media Hub...</span>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-wrapper">
+      <div class="progress-bar-container">
+        <div id="progress" class="progress-bar"></div>
+      </div>
+      <div id="percentage" class="percentage-label">0%</div>
+    </div>
+
+    <!-- Direct Access Action -->
+    <div class="portal-actions">
+      <a href="dashboard.html" class="enter-portal-btn">
+        <span>Enter App Portal</span>
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="5" y1="12" x2="19" y2="12"></line>
+          <polyline points="12 5 19 12 12 19"></polyline>
+        </svg>
+      </a>
+    </div>
+
+    <footer class="portal-footer">
+      <p>&copy; 2026 Elite Standard. All Rights Reserved.</p>
+    </footer>
+  </main>
 
   <script src="https://cdn.jsdelivr.net/npm/tsparticles@2.12.0/tsparticles.bundle.min.js"></script>
-  <script src="script0ff5.js?v=1.0.2"></script>
+  <script src="script0ff5.js"></script>
 </body>
 
 </html>
